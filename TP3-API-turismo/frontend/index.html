@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>API Turismo — CdU</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+ 
+  <header>
+    <h1>🧭 API Turismo</h1>
+    <p>Concepción del Uruguay, Entre Ríos</p>
+  </header>
+ 
+  <main class="container">
+ 
+    <!-- ══════════════════════════════════
+         CARD 1 — AGREGAR LUGAR
+    ══════════════════════════════════ -->
+    <div class="card">
+      <div class="card-header">
+        <span class="step">1</span>
+        <h2>Agregar Lugar</h2>
+      </div>
+ 
+      <label>Nombre</label>
+      <input id="nombre" placeholder="Ej: Farmacia Central"/>
+ 
+      <label>Categoría</label>
+      <select id="tipo">
+        <option value="farmacias">Farmacias</option>
+        <option value="supermercados">Supermercados</option>
+        <option value="universidades">Universidades</option>
+        <option value="cervecerias">Cervecerías</option>
+        <option value="emergencias">Emergencias</option>
+      </select>
+ 
+      <label>Latitud</label>
+      <input id="lat" placeholder="Ej: -32.4845"/>
+ 
+      <label>Longitud</label>
+      <input id="lng" placeholder="Ej: -58.2332"/>
+ 
+      <button onclick="agregar()">➕ Agregar</button>
+      <p id="msg-agregar" class="msg"></p>
+    </div>
+ 
+    <!-- ══════════════════════════════════
+         CARD 2 — BUSCAR CERCANOS
+    ══════════════════════════════════ -->
+    <div class="card">
+      <div class="card-header">
+        <span class="step">2</span>
+        <h2>Buscar Cercanos (5 km)</h2>
+      </div>
+ 
+      <p class="hint">Ingresá tu ubicación y una categoría para ver qué lugares hay cerca.</p>
+ 
+      <label>Tu latitud</label>
+      <input id="lat2" placeholder="Ej: -32.4823"/>
+ 
+      <label>Tu longitud</label>
+      <input id="lng2" placeholder="Ej: -58.2352"/>
+ 
+      <label>Categoría</label>
+      <select id="tipo2">
+        <option value="farmacias">Farmacias</option>
+        <option value="supermercados">Supermercados</option>
+        <option value="universidades">Universidades</option>
+        <option value="cervecerias">Cervecerías</option>
+        <option value="emergencias">Emergencias</option>
+      </select>
+ 
+      <button onclick="buscar()">🔍 Buscar</button>
+ 
+      <ul id="resultados"></ul>
+    </div>
+ 
+    <!-- ══════════════════════════════════
+         CARD 3 — CALCULAR DISTANCIA
+         Solo se activa luego de buscar
+    ══════════════════════════════════ -->
+    <div class="card" id="card-distancia">
+      <div class="card-header">
+        <span class="step">3</span>
+        <h2>Calcular Distancia</h2>
+      </div>
+ 
+      <!-- Estado inicial: bloqueado hasta que se busquen lugares -->
+      <div id="dist-bloqueado">
+        <p class="hint locked">⚠️ Primero realizá una búsqueda en el <strong>Paso 2</strong>.<br/>
+        Los lugares encontrados aparecerán aquí para que elijas uno.</p>
+      </div>
+ 
+      <!-- Estado activo: muestra el select con los resultados del paso 2 -->
+      <div id="dist-activo" style="display:none">
+        <p class="hint">Elegí uno de los lugares encontrados para calcular la distancia desde tu ubicación.</p>
+ 
+        <label>Lugar destino</label>
+        <select id="destino"></select>
+ 
+        <button onclick="distancia()">📏 Calcular</button>
+        <div id="resultado-distancia" class="resultado-dist"></div>
+      </div>
+    </div>
+ 
+  </main>
+ 
+  <script src="app.js"></script>
+</body>
+</html>
+ 

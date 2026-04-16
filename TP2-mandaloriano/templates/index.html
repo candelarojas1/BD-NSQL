@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Mandalorian — Alquiler</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<div id="toast-area"></div>
+
+<div id="modal-overlay">
+  <div class="modal" id="modal-content"></div>
+</div>
+
+<div class="container">
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-text">
+        <h1>The Mandalorian</h1>
+        <p>Sistema de alquiler · Reserva 4 min · Alquiler 24 hs</p>
+      </div>
+      <div class="stats" id="stats">
+        <div class="stat">
+          <span class="stat-val green" id="cnt-disp">—</span>
+          <span class="stat-label">Disponibles</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val amber" id="cnt-res">—</span>
+          <span class="stat-label">Reservados</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val red" id="cnt-alq">—</span>
+          <span class="stat-label">Alquilados</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="seasons-container">
+    <div class="loading">Cargando capítulos...</div>
+  </main>
+</div>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>
