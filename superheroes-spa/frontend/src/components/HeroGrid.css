@@ -1,0 +1,27 @@
+.hero-grid-actions {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.search-input {
+  max-width: 500px;
+  width: 100%;
+  font-size: 1rem;
+  background-color: var(--bg-surface-elevated);
+}
+
+.loading-state, .error-state, .empty-state {
+  text-align: center;
+  padding: 4rem 1rem;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  background-color: var(--bg-surface);
+  border-radius: 8px;
+  border: 1px dashed var(--border-light);
+}
+
+.error-state {
+  color: #ff1744;
+  border-color: rgba(255, 23, 68, 0.3);
+}

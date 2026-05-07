@@ -1,0 +1,95 @@
+.hero-card {
+  background-color: var(--bg-surface);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid var(--border-light);
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.hero-card.border-marvel { border-color: rgba(237, 29, 36, 0.2); }
+.hero-card.border-dc { border-color: rgba(4, 118, 242, 0.2); }
+
+.hero-card.border-marvel:hover {
+  border-color: var(--marvel-red);
+  box-shadow: 0 0 15px rgba(237, 29, 36, 0.3);
+}
+
+.hero-card.border-dc:hover {
+  border-color: var(--dc-blue);
+  box-shadow: 0 0 15px rgba(4, 118, 242, 0.3);
+}
+
+.hero-card:hover .hero-card-image img {
+  transform: scale(1.05);
+}
+
+.hero-card-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.hero-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.hero-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  backdrop-filter: blur(4px);
+  padding: 0.25rem 0.75rem;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.badge-Marvel {
+  background-color: rgba(237, 29, 36, 0.85);
+  color: #fff;
+}
+
+.badge-DC {
+  background-color: rgba(4, 118, 242, 0.85);
+  color: #fff;
+}
+
+.hero-card-content {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.hero-name {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
+}
+
+.hero-real-name {
+  font-size: 0.9rem;
+  color: var(--accent-gold);
+  margin-bottom: 0.75rem;
+  font-style: italic;
+}
+
+.hero-bio {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  flex-grow: 1;
+}
