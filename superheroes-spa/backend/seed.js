@@ -4,7 +4,141 @@ const Hero = require('./src/models/Hero');
 
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/superheroesdb';
 
+const avatarMap = {
+  // ── MARVEL ──────────────────────────────────────────────────────────
+  "Spider-Man": [
+    "https://yoolk.ninja/wp-content/uploads/2021/10/Marvel-Spiderman-symbiote-1024x819.png",
+    "https://yoolk.ninja/wp-content/uploads/2020/05/Mask-Venom-CliffDagger-1024x819.png"
+  ],
+  "Iron Man": [
+    "https://yoolk.ninja/wp-content/uploads/2019/08/Marvel-MrFantastic-1024x819.png"
+  ],
+  "Thor": [
+    "https://yoolk.ninja/wp-content/uploads/2019/07/marvel-thor-1024x819.png",
+    "https://yoolk.ninja/wp-content/uploads/2022/10/Marvel-BetaRayBill-1-1024x819.png"
+  ],
+  "Captain America": [
+    "https://yoolk.ninja/wp-content/uploads/2019/07/marvel-captain-america-1024x819.png"
+  ],
+  "Black Widow": [
+    "https://yoolk.ninja/wp-content/uploads/2021/03/Marvel-Mystique-1024x819.png"
+  ],
+  "Hulk": [
+    "https://yoolk.ninja/wp-content/uploads/2020/12/Marvel-Abomination-1024x819.png",
+    "https://yoolk.ninja/wp-content/uploads/2021/03/Marvel-She-Hulk-1-1024x819.png"
+  ],
+  "Wolverine": [
+    "https://yoolk.ninja/wp-content/uploads/2022/05/Marvel-Wolverine-Brown-Ver-1024x819.png"
+  ],
+  "Doctor Strange": [
+    "https://yoolk.ninja/wp-content/uploads/2021/03/Marvel-Talisman-1024x819.png"
+  ],
+  "Black Panther": [
+    "https://yoolk.ninja/wp-content/uploads/2019/07/marvel-black-panther-1024x819.png"
+  ],
+  "Scarlet Witch": [
+    "https://yoolk.ninja/wp-content/uploads/2020/11/Marvel-Scarlet-Witch-1-1024x819.png"
+  ],
+  "Deadpool": [
+    "https://yoolk.ninja/wp-content/uploads/2020/05/marvel-Bullseye-1024x819.png",
+    "https://yoolk.ninja/wp-content/uploads/2019/07/marvel-scorpion-1024x819.png"
+  ],
+  "Thanos": [
+    "https://yoolk.ninja/wp-content/uploads/2020/05/Marvel-Galactus-1024x819.png"
+  ],
+  "Loki": [
+    "https://yoolk.ninja/wp-content/uploads/2020/12/marvel-Loki-1024x819.png"
+  ],
+  "Magneto": [
+    "https://yoolk.ninja/wp-content/uploads/2019/07/marvel-Magneto-1024x819.png"
+  ],
+  "Venom": [
+    "https://yoolk.ninja/wp-content/uploads/2020/05/Mask-Venom-MilesMayhem-1024x819.png"
+  ],
+  "Captain Marvel": [
+    "https://yoolk.ninja/wp-content/uploads/2020/12/marvel-Mar-Vell-1024x819.png"
+  ],
+  "Hawkeye": [
+    "https://yoolk.ninja/wp-content/uploads/2020/11/marvel-us-agent-1024x819.png"
+  ],
+  "Ant-Man": [
+    "https://yoolk.ninja/wp-content/uploads/2020/11/marvel-Ant-Man-1024x819.png"
+  ],
+  "Nick Fury": [
+    "https://yoolk.ninja/wp-content/uploads/2020/11/marvel-Red-Skull-1024x819.png"
+  ],
+  "Groot": [
+    "https://yoolk.ninja/wp-content/uploads/2024/05/Marvel-Groot-1.png"
+  ],
+  // ── DC ──────────────────────────────────────────────────────────────
+  "Batman": [
+    "https://yoolk.ninja/wp-content/uploads/2019/07/DC-Comics-batman-1024x819.png",
+    "https://yoolk.ninja/wp-content/uploads/2021/03/DC-Comics-Mr-Miracle-1024x819.png"
+  ],
+  "Superman": [
+    "https://yoolk.ninja/wp-content/uploads/2019/07/DC-Comics-Superman-1024x819.png"
+  ],
+  "Wonder Woman": [
+    "https://yoolk.ninja/wp-content/uploads/2021/03/DC-Comics-Wonder-Woman-1024x819.png"
+  ],
+  "The Flash": [
+    "https://yoolk.ninja/wp-content/uploads/2019/07/dc-flash-1024x819.png"
+  ],
+  "Aquaman": [
+    "https://yoolk.ninja/wp-content/uploads/2019/07/dc-aquaman-1024x819.png"
+  ],
+  "Green Lantern": [
+    "https://yoolk.ninja/wp-content/uploads/2021/03/DC-Comics-Green-Lantern-1024x819.png"
+  ],
+  "Cyborg": [
+    "https://yoolk.ninja/wp-content/uploads/2019/07/DC-Comics-Cyborg-1024x819.png"
+  ],
+  "Shazam": [
+    "https://yoolk.ninja/wp-content/uploads/2019/07/dc-shazam-1024x819.png"
+  ],
+  "Harley Quinn": [
+    "https://yoolk.ninja/wp-content/uploads/2021/03/DC-Comics-Harley-Queen-1024x819.png",
+    "https://yoolk.ninja/wp-content/uploads/2022/02/DC-Peacemaker-1024x819.png"
+  ],
+  "The Joker": [
+    "https://yoolk.ninja/wp-content/uploads/2019/07/dc-joker-alt-1-1024x819.png"
+  ],
+  "Lex Luthor": [
+    "https://yoolk.ninja/wp-content/uploads/2019/07/dc-brainiac-1024x819.png"
+  ],
+  "Catwoman": [
+    "https://yoolk.ninja/wp-content/uploads/2021/03/DC-Comics-Catwoman-2-1024x819.png"
+  ],
+  "Green Arrow": [
+    "https://yoolk.ninja/wp-content/uploads/2022/04/DC-Space-Ghost-1024x819.png"
+  ],
+  "Martian Manhunter": [
+    "https://yoolk.ninja/wp-content/uploads/2021/03/DC-Comics-Martian-Manhunter-2-1024x819.png"
+  ],
+  "Nightwing": [
+    "https://yoolk.ninja/wp-content/uploads/2021/03/DC-Comics-Orion-1024x819.png"
+  ],
+  "Black Adam": [
+    "https://yoolk.ninja/wp-content/uploads/2021/03/DC-Comics-Kalibak-1024x819.png"
+  ],
+  "Zatanna": [
+    "https://yoolk.ninja/wp-content/uploads/2021/03/DC-Comics-Dr-Fate-1024x819.png"
+  ],
+  "Supergirl": [
+    "https://yoolk.ninja/wp-content/uploads/2021/03/Marvel-Ms-Marvel-1024x819.png"
+  ],
+  "Deathstroke": [
+    "https://yoolk.ninja/wp-content/uploads/2021/03/DC-Comics-Deathstroke-1024x819.png"
+  ],
+  "Darkseid": [
+    "https://yoolk.ninja/wp-content/uploads/2021/03/DC-Comics-Darkseid-1-1024x819.png"
+  ]
+};
+
 const getAvatar = (name, house, idx) => {
+  if (avatarMap[name] && avatarMap[name][idx - 1]) {
+    return avatarMap[name][idx - 1];
+  }
   const bg = house === 'Marvel' ? 'ed1d24' : '0476F2';
   return `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=${bg}&color=fff&size=200&bold=true&font-size=0.4&unique=img${idx}`;
 };

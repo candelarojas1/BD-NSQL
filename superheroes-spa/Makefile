@@ -1,10 +1,19 @@
-.PHONY: up down seed
+.PHONY: up down build logs seed clean
 
 up:
-	docker-compose up --build -d
+	docker-compose up -d
+
+build:
+	docker-compose up -d --build
 
 down:
 	docker-compose down
 
+logs:
+	docker-compose logs -f
+
 seed:
-	docker-compose exec backend npm run seed
+	docker-compose exec backend node seed.js
+
+clean:
+	docker-compose down -v

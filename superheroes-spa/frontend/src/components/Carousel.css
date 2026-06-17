@@ -3,8 +3,8 @@
   position: relative;
   overflow: hidden;
   border-radius: 8px;
-  background-color: var(--bg-surface-elevated);
-  aspect-ratio: 16 / 9;
+  background-color: #0d0d18;
+  aspect-ratio: 4 / 3;
   border: 1px solid var(--border-light);
 }
 
@@ -26,7 +26,8 @@
 .carousel-item img, .carousel.single img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 0.5rem;
 }
 
 .carousel-control {
