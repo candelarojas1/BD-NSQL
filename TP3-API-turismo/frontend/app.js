@@ -1,5 +1,6 @@
 
-const API = "http://localhost:5001";
+const API = "http://127.0.0.1:5001";
+
  
 // Guarda la última búsqueda para usarla en el paso 3
 let ultimaBusqueda = {
